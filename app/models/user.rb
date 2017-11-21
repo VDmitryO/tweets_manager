@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tweets
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
@@ -18,8 +19,11 @@ class User < ApplicationRecord
       config.access_token        = oauth_token
       config.access_token_secret = oauth_secret
     end
-
-    client.update(tweet)
+    if tweet.image?
+      client.update(tweet.text)
+    else
+      client.update_with_media(tweet.text, tweet.image.file.file)
+    end
   end
 
 end
