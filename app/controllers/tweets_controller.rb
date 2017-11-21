@@ -3,17 +3,19 @@ class TweetsController < ApplicationController
 
   def new
     #@tweets = Tweet.delete_all
-    @tweets = Tweet.where(user_id: current_user.id)
+    @tweets = Tweet.where(user_id: current_user.id).order(created_at: :desc)
     @tweet = Tweet.new
   end
 
   def create
     @tweet = Tweet.new(twitter_params)
-    link = current_user.tweet(@tweet)
-    @tweet.link =  link.url.to_s
-    @tweet.user_id = current_user.id
-    @tweet.save
-    redirect_to new_tweet_path
+    if @tweet.save
+      link = current_user.tweet(@tweet)
+      @tweet.update(link: link.url.to_s, user_id: current_user.id )
+      redirect_to new_tweet_path, notice: 'Tweet was successfully created.'
+    else
+      redirect_to new_tweet_path, alert: 'Tweet was not created!Check the tweet'
+    end
   end
 
   private

@@ -20,9 +20,9 @@ class User < ApplicationRecord
       config.access_token_secret = oauth_secret
     end
     if tweet.image?
-      client.update(tweet.text)
-    else
       client.update_with_media(tweet.text, tweet.image.file.file)
+      else
+        client.update(tweet.text)
     end
   end
 

@@ -1,20 +1,33 @@
-<h1>Tweets#new</h1>
-<p>
-  <%= form_for :tweet,  html: { multipart: true }, url: tweets_path, method: :post do |f| %>
-      <%= f.text_field :text %>
-      <%= f.file_field :image %>
-      <%= f.submit "Send Tweet", class: "btn btn-primary" %>
-  <% end %>
-  <% @tweets.each do |tweet| %>
-    <p>
-      <strong>Text:</strong>
-      <%= tweet.text %>
-    </p>
-    <% unless tweet.image.thumb.url.nil? %>
-    <p>
-      <strong>Image:</strong>
-      <%= image_tag tweet.image.thumb.url %>
-    </p>
+<div class="row">
+  <div class="form-group center-block">
+    <%= form_for :tweet,  html: { multipart: true }, url: tweets_path, method: :post do |f| %>
+        <div class="col-lg-5 col-md-offset-3">
+          <%= f.text_area :text, maxlength: 280, cols: '40%' %>
+          <%= f.file_field :image %>
+        </div>
+        <div class="col-lg-1">
+          <%= f.submit 'Tweet!', class: 'btn btn-primary' %>
+        </div>
     <% end %>
-  <% end %>
-</p>
+  </div>
+</div>
+<% @tweets.each do |tweet| %>
+    <div class="center-block tweet">
+      <% if tweet.image? %>
+          <div class="col-lg-3">
+            <%= image_tag tweet.image.thumb.url unless tweet.image.thumb.url.nil?%>
+          </div>
+          <div class="col-lg-9"><p><%= tweet.text %></p></div>
+      <% else %>
+          <p><%= tweet.text %></p>
+      <% end %>
+      <div class="row">
+        <div class="col-lg-3 col-md-offset-7">
+          <%= tweet.created_at.strftime('%F %T') %>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to 'View', tweet.link %>
+        </div>
+      </div>
+    </div>
+<% end %>

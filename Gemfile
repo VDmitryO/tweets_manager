@@ -5,15 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'sprockets-rails'
+
 gem 'mime-types'
 gem 'mime-types-data'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'carrierwave' , ' ~> 1.0 '
 gem 'sass-rails', '~> 5.0'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'therubyracer'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails'
 
 # Rubocop
 gem 'rubocop', '~> 0.51.0', require: false

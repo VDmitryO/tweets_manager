@@ -1,7 +1,11 @@
-<h1>Home#show</h1>
-<% if !current_user.nil? %>
-    <p>Click The link below to send a tweet.</p>
-    <%= link_to "Send a Tweet", new_tweet_path %>
-<% else %>
-    <p>You must log in to send a tweet.</p>
-<% end %>
+<div class="container center-block">
+  <div class="row">
+    <% if current_user.nil? %>
+        <h1 class="h1 text-info" >You must log in to send a tweet.</h1>
+        <%= link_to "Sign in", "/auth/twitter", id: "sign_in" , class: "btn btn-primary" %>
+    <% else %>
+        <h1 class="h1 text-info" >Click The link below to send a tweet.</h1>
+        <%= link_to "Send a Tweet", new_tweet_path, class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>
