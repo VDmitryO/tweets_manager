@@ -1,28 +1,14 @@
-<<<<<<< HEAD
-# README
+# Tweets_manager
+## Запуск приложения:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Скачайте приложение и откройте его через тепрминал
 
-Things you may want to cover:
+2. Запустите в терминале следующие команды
 
-* Ruby version
+    * bundle install
+    
+    * rake db:create db:migrate
 
-* System dependencies
+    * rails s
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# tweets_manager
->>>>>>> d71ec30c66242f4b00f67780c55fd6e409245791
